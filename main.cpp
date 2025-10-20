@@ -21,8 +21,6 @@ int main(){
         cin >> cyphertext[i];
     }
 
-    int* cypherText = new int[m];
-
     if(!pIsValid(n, p, q))
         cout << "Public key is not valid!";
 
