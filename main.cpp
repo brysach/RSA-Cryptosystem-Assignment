@@ -55,8 +55,6 @@ int main(){
         printDText(dText, m);
     }
     
-    
-
     //cout << p << "-" << q;
 
     return 0;
@@ -115,7 +113,7 @@ int* decypher(const int* cypher, int n, int d, int size){
     int* text = new int[size];
 
     for(int i = 0; i < size; i++){
-        text[i] = (int)(pow((double)cypher[i],d))%n;
+        text[i] = ((long long)(pow((double)cypher[i], (double)d))) % n;
     }
 
     return text;
