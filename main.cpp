@@ -4,6 +4,8 @@ using namespace std;
 
 bool isPrime(int);
 bool pIsValid(int, int&, int&);
+int computePhi(int, int);
+int findD(int, int);
 
 int main(){
     int e;
@@ -11,6 +13,8 @@ int main(){
     int m; // Number characters in the message
     int p;
     int q;
+    int phi; // phi(n)
+    int d;
 
     cin >> e >> n;
     cin >> m;
@@ -25,8 +29,13 @@ int main(){
 
     if(!pIsValid(n, p, q))
         cout << "Public key is not valid!";
+    else{
+        phi = computePhi(p, q);
+        d = findD(e, phi);
+    }
     
-    cout << p << "-" << q;
+    cout << d;
+    //cout << p << "-" << q;
 
     return 0;
 }
@@ -58,6 +67,23 @@ bool pIsValid(int n, int& p, int& q){
             break;
         }
     }
-
     return true;
+}
+
+int computePhi(int p, int q){
+    return (p-1)*(q-1);
+}
+
+int findD(int e, int phi){
+    bool dIsFound = false;
+    int d;
+    int i = 1;
+    while(!dIsFound){
+        i += phi;
+        if(i % e == 0){
+            dIsFound = true;
+            d = i/e;
+        }
+    }
+    return d;
 }
