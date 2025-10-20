@@ -15,15 +15,13 @@ int main(){
     cin >> e >> n;
     cin >> m;
 
-<<<<<<< HEAD
     int* cyphertext = new int[m];
 
     for(int i = 0; i < m; i++){
         cin >> cyphertext[i];
     }
-=======
+    
     int* cypherText = new int[m];
->>>>>>> origin/main
 
     if(!pIsValid(n, p, q))
         cout << "Public key is not valid!";
