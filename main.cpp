@@ -43,7 +43,6 @@ int main(){
     BobMap.insert({'.', 34});
     BobMap.insert({'\'', 35});
 
-
     //cout << isPrime(5);
 
     if(!pIsValid(n, p, q))
@@ -52,10 +51,11 @@ int main(){
         phi = computePhi(p, q);
         d = findD(e, phi);
         dText = decypher(cyphertext, n, d, m);
+        cout << p << " " << q << " " << phi << " " << d << endl;
+        printDText(dText, m);
     }
     
-    cout << p << " " << q << " " << phi << " " << d << endl;
-    printDText(dText, m);
+    
 
     //cout << p << "-" << q;
 
