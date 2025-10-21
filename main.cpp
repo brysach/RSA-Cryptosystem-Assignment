@@ -86,20 +86,36 @@ bool isPrime(int n){
 }
 
 bool pIsValid(int n, int& p, int& q){
-    bool pFound = false;
+    //bool pFound = false;
+    //bool qFound = false;
+    bool isValid = false;
     if(isPrime(n)) return false;
     for(int i = 2; i <= n/2; i++){
-        if(n % i == 0 && isPrime(i) && !pFound){
-            p = i;
-            pFound = true;
-            continue;
+        if(n % i == 0 && isPrime(i) ){
+            int j = n/i;
+            if(isPrime(j) && n % j == 0){
+                p = i;
+                q = j;
+                isValid = true;
+            }
+
+            //p = i;
+            //pFound = true;
+            //continue;
         }
-        if(n % i == 0 && isPrime(i)){
-            q = i;
-            break;
-        }
+        // if(n % i == 0 && isPrime(i) && !qFound){
+        //     q = i;
+        //     qFound = true;
+        //     break;
+        // }
     }
-    return true;
+    // if(!pFound || !qFound){
+    //     return false;
+    // }
+
+    if(isValid) return true;
+    else return false;
+    //return true;
 }
 
 int computePhi(int p, int q){
