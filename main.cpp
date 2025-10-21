@@ -51,7 +51,7 @@ int main(){
     //cout << isPrime(5);
 
     if(!pIsValid(n, p, q))
-        cout << "Public key is not valid!";
+        cout << "Public key is not valid!" << endl;
     else{
         phi = computePhi(p, q);
         eIsInverse = gcd(e, phi) == 1 ? 1 : 0;
@@ -63,7 +63,7 @@ int main(){
             printDText(dText, m);
             printMessage(BobMap, dText, m);
         } else{
-            cout << "Public key is not valid!";
+            cout << "Public key is not valid!" << endl;
         }
     }
     
