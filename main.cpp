@@ -89,7 +89,7 @@ bool keyIsValid(int n, int e, int& p, int& q){
     //bool pFound = false;
     //bool qFound = false;
     bool isValid = false;
-    if(isPrime(n)) return false;
+    if(isPrime(n) || n < 0) return false;
     if(e <= 0 || e >= n) return false;
     for(int i = 2; i <= n/2; i++){
         if(n % i == 0 && isPrime(i) && !isValid){
