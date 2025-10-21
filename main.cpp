@@ -149,4 +149,5 @@ void printMessage(map<int, char>m, const int* dText, int size){
     for(int i = 0; i < size; i++){
         cout << m[dText[i]];
     }
+    cout << endl;
 }
