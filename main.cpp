@@ -10,6 +10,7 @@ int findD(int, int);
 int* decypher(const int*, int, int, int);
 void printDText(const int*, int);
 void printMessage(map<int, char>, const int*, int);
+int gcd(int, int);
 
 int main(){
     int e;
@@ -19,6 +20,7 @@ int main(){
     int q;
     int phi; // phi(n)
     int d;
+    bool eIsInverse = true;
     map<int, char> BobMap;
 
     cin >> e >> n;
@@ -52,11 +54,17 @@ int main(){
         cout << "Public key is not valid!";
     else{
         phi = computePhi(p, q);
-        d = findD(e, phi);
-        dText = decypher(cyphertext, n, d, m);
-        cout << p << " " << q << " " << phi << " " << d << endl;
-        printDText(dText, m);
-        printMessage(BobMap, dText, m);
+        eIsInverse = gcd(e, phi) == 1 ? 1 : 0;
+        
+        if(eIsInverse){
+            d = findD(e, phi);
+            dText = decypher(cyphertext, n, d, m);
+            cout << p << " " << q << " " << phi << " " << d << endl;
+            printDText(dText, m);
+            printMessage(BobMap, dText, m);
+        } else{
+            cout << "Public key is not valid!";
+        }
     }
     
     //cout << p << "-" << q;
@@ -150,4 +158,18 @@ void printMessage(map<int, char>m, const int* dText, int size){
         cout << m[dText[i]];
     }
     cout << endl;
+}
+
+int gcd(int a, int b){
+        if(a == b){
+        return a;
+    }
+    
+    int temp;
+    if(a < b ){
+        temp = b;
+        b = a;
+        a = temp;
+    }
+    return gcd(a - b, b);
 }
