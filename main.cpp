@@ -97,7 +97,7 @@ int computePhi(int p, int q){
 int findD(int e, int phi){
     bool dIsFound = false;
     int d;
-    int i = 1;
+    long long i = 1;
     while(!dIsFound){
         i += phi;
         if(i % e == 0){
@@ -108,12 +108,27 @@ int findD(int e, int phi){
     return d;
 }
 
-
 int* decypher(const int* cypher, int n, int d, int size){
     int* text = new int[size];
 
     for(int i = 0; i < size; i++){
-        text[i] = ((long long)(pow((double)cypher[i], (double)d))) % n;
+        long long M = 1LL; 
+        long long dTemp = (long long)d;
+        long long C = (long long)cypher[i];        
+        // Compute M = C^d (mod n)
+        while(dTemp >= 1){
+            if(dTemp % 2LL == 1){
+                M = (M * C) % n;
+                dTemp--;
+            } else{
+                C = (C * C) % n;
+                dTemp /= 2LL;
+                if(C == 1){
+                    break;
+                }
+            }
+        }
+        text[i] = M;
     }
 
     return text;
