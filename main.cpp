@@ -68,7 +68,8 @@ int main(){
     }
     
     //cout << p << "-" << q;
-
+    delete [] dText;
+    delete [] cyphertext;
     return 0;
 }
 
