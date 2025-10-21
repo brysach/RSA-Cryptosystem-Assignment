@@ -21,6 +21,7 @@ int main(){
     int phi; // phi(n)
     int d;
     bool eIsInverse = true;
+    bool eIsLarge = false;
     map<int, char> BobMap;
 
     cin >> e >> n;
@@ -54,9 +55,12 @@ int main(){
         cout << "Public key is not valid!" << endl;
     else{
         phi = computePhi(p, q);
-        eIsInverse = gcd(e, phi) == 1 ? 1 : 0;
+        if(e >= phi)
+            eIsLarge = true;
+        else
+            eIsInverse = gcd(e, phi) == 1 ? 1 : 0;
         
-        if(eIsInverse){
+        if(eIsInverse && !eIsLarge){
             d = findD(e, phi);
             delete [] dText;
             dText = decypher(cyphertext, n, d, m);
