@@ -91,7 +91,7 @@ bool pIsValid(int n, int& p, int& q){
     bool isValid = false;
     if(isPrime(n)) return false;
     for(int i = 2; i <= n/2; i++){
-        if(n % i == 0 && isPrime(i) ){
+        if(n % i == 0 && isPrime(i) && !isValid){
             int j = n/i;
             if(isPrime(j) && n % j == 0){
                 p = i;
