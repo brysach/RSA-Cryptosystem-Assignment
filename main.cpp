@@ -9,6 +9,7 @@ int computePhi(int, int);
 int findD(int, int);
 int* decypher(const int*, int, int, int);
 void printDText(const int*, int);
+void printMessage(map<int, char>, const int*, int);
 
 int main(){
     int e;
@@ -18,7 +19,7 @@ int main(){
     int q;
     int phi; // phi(n)
     int d;
-    map<char, int> BobMap;
+    map<int, char> BobMap;
 
     cin >> e >> n;
     cin >> m;
@@ -31,17 +32,19 @@ int main(){
     }
 
     // Assign integers to characters
-    char letter = 41;
+    char letter = 65;
     
     for(int i = 5; i <= 30; i++){
-        BobMap.insert({letter, i});
+        BobMap.insert({i, letter});
         letter++;
     }
-    BobMap.insert({' ', 31});
-    BobMap.insert({'"', 32});
-    BobMap.insert({',', 33});
-    BobMap.insert({'.', 34});
-    BobMap.insert({'\'', 35});
+    BobMap.insert({31, ' '});
+    BobMap.insert({32, '"'});
+    BobMap.insert({33, ','});
+    BobMap.insert({34, '.'});
+    BobMap.insert({35, '\''});
+
+    cout << "this is A: " << BobMap[5] << endl;
 
     //cout << isPrime(5);
 
@@ -53,6 +56,7 @@ int main(){
         dText = decypher(cyphertext, n, d, m);
         cout << p << " " << q << " " << phi << " " << d << endl;
         printDText(dText, m);
+        printMessage(BobMap, dText, m);
     }
     
     //cout << p << "-" << q;
@@ -139,4 +143,10 @@ void printDText(const int* text, int size){
         cout << text[i] << " ";
     }
     cout << endl;
+}
+
+void printMessage(map<int, char>m, const int* dText, int size){
+    for(int i = 0; i < size; i++){
+        cout << m[dText[i]];
+    }
 }
