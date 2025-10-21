@@ -167,7 +167,8 @@ int* decypher(const int* cypher, int n, int d, int size){
 
 void printDText(const int* text, int size){
     for(int i = 0; i < size; i++){
-        cout << text[i] << " ";
+        if(i) cout << " ";
+        cout << text[i];
     }
     cout << endl;
 }
