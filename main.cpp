@@ -93,7 +93,7 @@ bool pIsValid(int n, int& p, int& q){
     for(int i = 2; i <= n/2; i++){
         if(n % i == 0 && isPrime(i) && !isValid){
             int j = n/i;
-            if(isPrime(j) && n % j == 0){
+            if( j != i && isPrime(j) && n % j == 0){
                 p = i;
                 q = j;
                 isValid = true;
