@@ -21,7 +21,6 @@ int main(){
     int phi; // phi(n)
     int d;
     bool eIsInverse = true;
-    bool eIsLarge = false;
     map<int, char> BobMap;
 
     cin >> e >> n;
@@ -55,12 +54,9 @@ int main(){
         cout << "Public key is not valid!" << endl;
     else{
         phi = computePhi(p, q);
-        if(e >= phi)
-            eIsLarge = true;
-        else
-            eIsInverse = gcd(e, phi) == 1 ? 1 : 0;
+        eIsInverse = gcd(e, phi) == 1 ? 1 : 0;
         
-        if(eIsInverse && !eIsLarge){
+        if(eIsInverse){
             d = findD(e, phi);
             delete [] dText;
             dText = decypher(cyphertext, n, d, m);
@@ -96,7 +92,7 @@ bool keyIsValid(int n, int e, int& p, int& q){
     //bool qFound = false;
     bool isValid = false;
     if(isPrime(n) || n < 0) return false;
-    if(e < 1) return false;
+    if(e <= 1) return false;
     for(int i = 2; i <= n/2; i++){
         if(n % i == 0 && isPrime(i) && !isValid){
             int j = n/i;
