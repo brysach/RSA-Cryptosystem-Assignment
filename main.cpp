@@ -4,7 +4,7 @@
 using namespace std;
 
 bool isPrime(int);
-bool pIsValid(int, int&, int&);
+bool keyIsValid(int, int, int&, int&);
 int computePhi(int, int);
 int findD(int, int);
 int* decypher(const int*, int, int, int);
@@ -50,7 +50,7 @@ int main(){
 
     //cout << isPrime(5);
 
-    if(!pIsValid(n, p, q))
+    if(!keyIsValid(n, e, p, q))
         cout << "Public key is not valid!" << endl;
     else{
         phi = computePhi(p, q);
@@ -85,11 +85,12 @@ bool isPrime(int n){
     return true;
 }
 
-bool pIsValid(int n, int& p, int& q){
+bool keyIsValid(int n, int e, int& p, int& q){
     //bool pFound = false;
     //bool qFound = false;
     bool isValid = false;
     if(isPrime(n)) return false;
+    if(e <= 0 || e >= n) return false;
     for(int i = 2; i <= n/2; i++){
         if(n % i == 0 && isPrime(i) && !isValid){
             int j = n/i;
