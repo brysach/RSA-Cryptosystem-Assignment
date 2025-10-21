@@ -58,6 +58,7 @@ int main(){
         
         if(eIsInverse){
             d = findD(e, phi);
+            delete [] dText;
             dText = decypher(cyphertext, n, d, m);
             cout << p << " " << q << " " << phi << " " << d << endl;
             printDText(dText, m);
@@ -91,7 +92,7 @@ bool keyIsValid(int n, int e, int& p, int& q){
     //bool qFound = false;
     bool isValid = false;
     if(isPrime(n) || n < 0) return false;
-    if(e <= 0 || e >= n) return false;
+    if(e < 1) return false;
     for(int i = 2; i <= n/2; i++){
         if(n % i == 0 && isPrime(i) && !isValid){
             int j = n/i;
