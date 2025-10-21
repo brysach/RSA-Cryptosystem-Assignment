@@ -44,7 +44,7 @@ int main(){
     BobMap.insert({34, '.'});
     BobMap.insert({35, '\''});
 
-    cout << "this is A: " << BobMap[5] << endl;
+    //cout << "this is A: " << BobMap[5] << endl;
 
     //cout << isPrime(5);
 
